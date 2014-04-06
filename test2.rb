@@ -28,14 +28,24 @@ get '/sms-quickstart' do
              :address => @client2.account.sms.messages.list.first.body[0..4],
              :limit => 1)
     response = client.search(request)
-    retards =  response.to_s.split('"')
-    for i in 0..retards.length
-      if retards[i]=="name"
-        #r.Message @client2.account.sms.messages.list.first.body
-        r.Message "Hello, #{name}. Restaurant : "+@client2.account.sms.messages.list.first.body[0..4]
+    results =  response.to_s.split('"')
+    for i in 0..results.length
+      if results[i]=="name"
+        name = results[i+2]
       end
+      if results[i]=="address"
+        address = results[i+2]
+      end
+      if results[i]=="city"
+        city = results[i+2]
+      end
+      if results[i]=="postal_code"
+        postal_code = results[i+2]
+      end
+      if results[i+1]=="state_code"
+        state_code = results[i+2]
     end
-    #r.Message "Hello, #{name}. Thanks for the message."
+    r.Message "We recommend : "+name+", "+address+", "+city+", "+state_code+"-"+postal_code
   end
   twiml.text
 end
