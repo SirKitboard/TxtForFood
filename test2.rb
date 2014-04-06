@@ -31,21 +31,17 @@ get '/sms-quickstart' do
     results =  response.to_s.split('"')
     for i in 0..results.length
       if results[i]=="name"
-        name = results[i+2]
+        #r.Message @client2.account.sms.messages.list.first.body
+        r.Message "We recommend"+results[i+2]
       end
-      if results[i]=="address"
-        address = results[i+2]
-      end
-      if results[i]=="city"
-        city = results[i+2]
-      end
-      if results[i]=="postal_code"
-        postal_code = results[i+2]
-      end
-      if results[i+1]=="state_code"
-        state_code = results[i+2]
     end
-    r.Message "We recommend : "+name+", "+address+", "+city+", "+state_code+"-"+postal_code
+    for i in 0..results.length
+      if results[i]=="address"
+        #r.Message @client2.account.sms.messages.list.first.body
+        r.Message "Located at : "+results[i+2]
+      end
+    end
+    #r.Message "Hello, #{name}. Thanks for the message."
   end
   twiml.text
 end
