@@ -23,7 +23,7 @@ get '/sms-quickstart' do
     request = Location.new(
              :term => "cream puffs",
              :address => "11790",#@client.account.sms.messages.list.first.body[0..5],
-             :limit => 1)
+             :limit => 3)
     response = client.search(request)
     retards =  response.to_s.split('"')
     for i in 0..retards.length
