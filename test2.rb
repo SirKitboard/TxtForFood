@@ -32,7 +32,7 @@ get '/sms-quickstart' do
     for i in 0..retards.length
       if retards[i]=="name"
         #r.Message @client2.account.sms.messages.list.first.body
-        r.Message "Hello, #{name}. Restaurant : "+retards[i+2]
+        r.Message "Hello, #{name}. Restaurant : "+@client2.account.sms.messages.list.first.body[0..4]
       end
     end
     #r.Message "Hello, #{name}. Thanks for the message."
