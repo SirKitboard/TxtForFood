@@ -28,12 +28,12 @@ Yelp.configure(:yws_id          => 'jIW1niVeaxfQ-GDKDsjeeg',
              :limit => 1)
     response = client.search(request)
     retards =  response.to_s.split('"')
-    for i in 0..retards.length
-      if retards[i]=="name"
-        r.Message retards[i+2]
-      end
-    end
-    #r.Message @client.account.sms.messages.list.first.body
+    #for i in 0..retards.length
+     # if retards[i]=="name"
+      #  r.Message retards[i+2]
+      #end
+    #end
+    r.Message @client.account.sms.messages.list.first.body
   end
   twiml.text
 end
