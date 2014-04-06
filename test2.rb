@@ -48,10 +48,10 @@ get '/sms-quickstart' do
         postal_code = results[i+2]
       end
       if results[i+1]=="state_code"
-        state_code = results[i+2]
+        state_code = results[i+3]
       end    
     end
-    r.Message "We recommend : "+name+", "+address+", "+city+", "+state_code+"-"+postal_code
+    r.Message "We recommend : "+name+", Located At "+address+", "+city+", "+state_code+"-"+postal_code
   end
   twiml.text
 end
