@@ -23,12 +23,12 @@ get '/sms-quickstart' do
     request = Location.new(
              :term => "cream puffs",
              :address => "11790",#@client.account.sms.messages.list.first.body[0..5],
-             :limit => 3)
+             :limit => 1)
     response = client.search(request)
     retards =  response.to_s.split('"')
     for i in 0..retards.length
       if retards[i]=="name"
-        r.Message "Hello, #{name}. Restaurant : "+retards[i+2]
+        r.Message "Hello, #{name}. Restaurant : "+@client.account.sms.messages.list.first.body
       end
     end
     #r.Message "Hello, #{name}. Thanks for the message."
