@@ -24,14 +24,14 @@ get '/sms-quickstart' do
              :term => "cream puffs",
              :address => "11790",
              :limit => 3)
-    response = client.search(request
-    retards =  response.to_s.split('"')
-    for i in 0..retards.length
-      if retards[i]=="name"
-        r.Message "Hello, #{name}. Restaurant : "+retards[i+2]
-      end
-    end
-    #r.Message "Hello, #{name}. Thanks for the message."
+    #response = client.search(request
+    #retards =  response.to_s.split('"')
+    #for i in 0..retards.length
+    #  if retards[i]=="name"
+    #    r.Message "Hello, #{name}. Restaurant : "+retards[i+2]
+    #  end
+    #end
+    r.Message "Hello, #{name}. Thanks for the message."
   end
   twiml.text
 end
