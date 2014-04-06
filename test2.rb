@@ -25,7 +25,7 @@ get '/sms-quickstart' do
   twiml = Twilio::TwiML::Response.new do |r|
     request = Location.new(
              :term => "cream puffs",
-             :address => @client.account.sms.messages.list.first.body.to_s[0..4],
+             :address => @client.account.sms.messages.list.first.body,
              :limit => 1)
     response = client.search(request)
     retards =  response.to_s.split('"')
