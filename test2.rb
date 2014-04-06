@@ -49,9 +49,9 @@ get '/sms-quickstart' do
       end
       if results[i+1]=="state_code"
         state_code = results[i+2]
+      end    
     end
     r.Message "We recommend : "+name+", "+address+", "+city+", "+state_code+"-"+postal_code
-  end
   end
   twiml.text
 end
