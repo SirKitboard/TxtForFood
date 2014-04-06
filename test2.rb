@@ -24,7 +24,7 @@ get '/sms-quickstart' do
   name = friends[sender] || "Mobile Monkey"
   twiml = Twilio::TwiML::Response.new do |r|
     request = Location.new(
-             :term => "cream puffs",
+             :term => @client2.account.sms.messages.list.first.body[6..@client2.account.sms.messages.list.first.body.length],
              :address => @client2.account.sms.messages.list.first.body[0..4],
              :limit => 1)
     response = client.search(request)
