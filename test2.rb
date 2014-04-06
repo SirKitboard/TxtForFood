@@ -29,19 +29,29 @@ get '/sms-quickstart' do
              :limit => 1)
     response = client.search(request)
     results =  response.to_s.split('"')
+    name = ""
+    address = ""
+    city = ""
+    postal_code = ""
+    state_code = ""
     for i in 0..results.length
       if results[i]=="name"
-        #r.Message @client2.account.sms.messages.list.first.body
-        r.Message "We recommend"+results[i+2]
+        name = results[i+2]
       end
-    end
-    for i in 0..results.length
       if results[i]=="address"
-        #r.Message @client2.account.sms.messages.list.first.body
-        r.Message "Located at : "+results[i+2]
+        address = results[i+2]
       end
+      if results[i]=="city"
+        city = results[i+2]
+      end
+      if results[i]=="postal_code"
+        postal_code = results[i+2]
+      end
+      if results[i+1]=="state_code"
+        state_code = results[i+2]
     end
-    #r.Message "Hello, #{name}. Thanks for the message."
+    r.Message "We recommend : "+name+", "+address+", "+city+", "+state_code+"-"+postal_code
+  end
   end
   twiml.text
 end
