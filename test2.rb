@@ -13,6 +13,9 @@ client = Yelp::Client.new
                :token_secret    => 'hTPpgXt0ELV21x-gmEkSWLtv0r8')
 get '/sms-quickstart' do  
   sender = params[:From]
+  account_sid = 'AC4d165f7a1f552d6265f691a7bcfb0204'
+  auth_token = '16294e680544dd2c8e232a551d582aab'
+  @client2 = Twilio::REST::Client.new account_sid, auth_token
   friends = {
     "+14153334444" => "Curious George",
     "+14158157775" => "Boots",
@@ -28,7 +31,7 @@ get '/sms-quickstart' do
     retards =  response.to_s.split('"')
     for i in 0..retards.length
       if retards[i]=="name"
-        r.Message @client.account.sms.messages.list.first.body
+        r.Message @client2.account.sms.messages.list.first.body
         #r.Message "Hello, #{name}. Restaurant : "+@client.account.sms.messages.list.first.body
       end
     end
