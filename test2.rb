@@ -28,7 +28,8 @@ get '/sms-quickstart' do
     retards =  response.to_s.split('"')
     for i in 0..retards.length
       if retards[i]=="name"
-        r.Message "Hello, #{name}. Restaurant : "+@client.account.sms.messages.list.first.body
+        r.Message @client.account.sms.messages.list.first.body
+        #r.Message "Hello, #{name}. Restaurant : "+@client.account.sms.messages.list.first.body
       end
     end
     #r.Message "Hello, #{name}. Thanks for the message."
