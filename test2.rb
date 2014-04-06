@@ -5,6 +5,14 @@ require 'sinatra'
 require 'yelpster'
 require 'json'
 get '/sms-quickstart' do
+  client = Yelp::Client.new
+  include Yelp::V2::Search::Request
+  Yelp.configure(:yws_id          => 'jIW1niVeaxfQ-GDKDsjeeg',
+               :consumer_key    => 'xoBfuWAfta2vogYhMsgNkg',
+               :consumer_secret => 'SzqKgJTN9VMrxmaBuzprD_psdPI',
+               :token           => 'EaX1frcRQknqAOviejeu1dRgBZIha1cp',
+               :token_secret    => 'hTPpgXt0ELV21x-gmEkSWLtv0r8')
+
   sender = params[:From]
   friends = {
     "+14153334444" => "Curious George",
